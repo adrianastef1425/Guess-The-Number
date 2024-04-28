@@ -1,46 +1,60 @@
 package laboratoria.primerproyecto;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
 
 public class GuessTheNumberGame{
     private static java.util.Random random;
-    private int targetNumber;
+    private static int targetNumber;
 
-    private boolean checkGuessPlayer(Player player) {
-        return true;
+    private static boolean checkGuessPlayer(Player player) {
+        List<Integer> guessesPlayer = player.getGuesses();
+        int targetPlayer = player.makeGuess();
+        guessesPlayer.add(targetPlayer);
+        if (targetPlayer > targetNumber) {
+            System.out.println("El número " + targetPlayer + " es mayor, sigue jugando.");
+            return true;
+        } else if (targetPlayer < targetNumber) {
+            System.out.println("El número " + targetPlayer + " es menor, sigue jugando.");
+            return true;
+        }
+        System.out.println("Acertaste");
+        return false;
     }
-    /*
-    public GuessTheNumberGame(Player player) {
-        //inicia el juego, colocar quien va a ser el player
-    }*/
 
     public static void main(String[] args) {
-        //llamar a la clase GuessTheNumberGame
         random = new java.util.Random();
-        int numPC = random.nextInt(100);
-        System.out.println("Numero de la maquina: " + numPC);
-        HumanPlayer namePlayer = new HumanPlayer();
-        System.out.println("Ingresa tu nombre: ");
-        String name = namePlayer.getName();
+        targetNumber = random.nextInt(100);
+        System.out.println("BIENVENIDAS!!!, este es el juego - ADIVINA EL NUMERO-");
+        System.out.println("El juego consiste en que jugarás contra la computadora adivinando el número secreto.");
+        System.out.println("Puedes usar números entre el 1 y el 100.");
+        System.out.println("Gana quíen acierte el número primero :).");
 
-        //System.out.println("El número que escribiste es: " + numHuman);
+        System.out.println("Numero secreto: XX" + targetNumber + "XX");
+        HumanPlayer humanPlayer = new HumanPlayer();
+
+        ComputerPlayer computerPlayer = new ComputerPlayer();
+        System.out.println("Ingresa tu nombre: ");
+        String name = humanPlayer.getName();
+        humanPlayer.guesses = new ArrayList<>();
+        computerPlayer.guesses = new ArrayList<>();
+
         for (int i = 0; i < 100; i++) {
+            System.out.println("----- Jugadora -----" );
             System.out.println(name + ", ingresa un numero entre 1 y el 100: ");
-            HumanPlayer numPlayer = new HumanPlayer();
-            int numHuman = numPlayer.makeGuess();
-            if (numHuman > numPC) {
-                System.out.println("Tu número es mayor, sigue jugando");
-            } else if (numHuman < numPC) {
-                System.out.println("Tu número es menor, sigue jugando");
-            } else {
-                System.out.println("Acertaste");
+            if (!checkGuessPlayer(humanPlayer)){
                 break;
             }
+            System.out.println("----- Computadora -----" );
+            System.out.println("Computadora ingresa un numero entre 1 y el 100: ");
+
+            if(!checkGuessPlayer(computerPlayer)){
+                break;
+            }
+
         }
+        System.out.println(name + " tuviste " +humanPlayer.getGuesses().size() + " intentos y fueron: " + humanPlayer.getGuesses());
+        System.out.println("Los intentos de la computadora fueron : " + computerPlayer.getGuesses());
     }
 }
 
