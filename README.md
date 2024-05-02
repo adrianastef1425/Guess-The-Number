@@ -22,6 +22,6 @@ Este proyecto implementa el popular juego "Adivina el número" en el que los jug
 Se han incluido pruebas unitarias para garantizar el correcto funcionamiento del juego. Puede ejecutar estas pruebas utilizando un entorno de desarrollo integrado o desde la línea de comandos.
 
 ## Dependencias
-- JDK 22
+- JDK 21
 - JUnit 5
 - Mockito
