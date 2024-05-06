@@ -16,7 +16,9 @@ class GuessTheNumberGameTest {
 
 
     ComputerPlayer computerPlayer = Mockito.mock(ComputerPlayer.class);
+
     GuessTheNumberGame game = new GuessTheNumberGame();
+
     Mockito.when(computerPlayer.makeGuess()).thenReturn(-1);
     assertTrue(game.checkGuessPlayer(computerPlayer));
 

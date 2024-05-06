@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GuessTheNumberGame{
     private static java.util.Random random;
-    private static int targetNumber;//private?
+    private static int targetNumber;
 
     public GuessTheNumberGame(){
         random = new java.util.Random();
@@ -26,7 +26,7 @@ public class GuessTheNumberGame{
 
         if (targetPlayer > targetNumber) {
             guessesLowOrHigh.add("high");
-            System.out.println("El número " + targetPlayer + " es mayor, sigue jugando.");
+            System.out.println("El número " + targetPlayer + " es mayor, sigue jugando.");//concat*
             return true;
         } else if (targetPlayer < targetNumber) {
             guessesLowOrHigh.add("low");
@@ -38,8 +38,6 @@ public class GuessTheNumberGame{
     }
 
     public static void main(String[] args) {
-        //random = new java.util.Random();
-        //targetNumber = random.nextInt(100);
 
         GuessTheNumberGame game =  new GuessTheNumberGame();
 
@@ -53,19 +51,17 @@ public class GuessTheNumberGame{
         HumanPlayer humanPlayer = new HumanPlayer();
         ComputerPlayer computerPlayer = new ComputerPlayer();
 
-        System.out.println("Ingresa tu nombre: ");
+        System.out.print("Ingresa tu nombre: ");
         String name = humanPlayer.getName();
-        //humanPlayer.guesses = new ArrayList<>();
-        //computerPlayer.guesses = new ArrayList<>();
 
         while(true) {
             System.out.println("----- Jugadora -----" );
-            System.out.println(name + ", ingresa un numero entre 1 y el 100: ");
+            System.out.print(name + ", ingresa un numero entre 1 y el 100: ");
             if (!checkGuessPlayer(humanPlayer)){
                 break;
             }
             System.out.println("----- Computadora -----" );
-            System.out.println("Computadora ingresa un numero entre 1 y el 100: ");
+            System.out.print("Computadora ingresa un numero entre 1 y el 100: ");
 
             if(!checkGuessPlayer(computerPlayer)){
                 break;

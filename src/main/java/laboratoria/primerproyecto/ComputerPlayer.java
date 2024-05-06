@@ -9,6 +9,8 @@ public class ComputerPlayer extends Player{
     private int max;
     private int min;
 
+    //Player humanPlayer = new HumanPlayer();
+
     public ComputerPlayer() {//constructor de computerplayer
         super();
         max = 100;
@@ -22,18 +24,19 @@ public class ComputerPlayer extends Player{
             random = new java.util.Random();
             inputComputer = random.nextInt(100);
             System.out.println(inputComputer);
+
         }else if(!lowOrHigh.isEmpty() && lowOrHigh.get(lowOrHigh.size()-1) == "low"){
-            if(guesses.get(lowOrHigh.size()-1) > min){
-                min = guesses.get(lowOrHigh.size()-1);
+            if(guesses.get(guesses.size()-1) > min){
+                min = guesses.get(guesses.size()-1);
             }
-
-            inputComputer = random.nextInt(max - guesses.get(lowOrHigh.size()-1) + 1) + guesses.get(lowOrHigh.size()-1);
+            inputComputer = random.nextInt(max - min + 1) + min + 1;
+            System.out.println(inputComputer);
         }else if(!lowOrHigh.isEmpty() && lowOrHigh.get(lowOrHigh.size()-1) == "high"){
-            if(guesses.get(lowOrHigh.size()-1) < max){
-                max = guesses.get(lowOrHigh.size()-1);
+            if(guesses.get(guesses.size()-1) < max){
+                max = guesses.get(guesses.size()-1);
             }
-
-            inputComputer = random.nextInt(guesses.get(lowOrHigh.size()-1) - min + 1) + min;
+            inputComputer = random.nextInt(max - min + 1) + min -1;
+            System.out.println(inputComputer);
         }
 
         return  inputComputer;
